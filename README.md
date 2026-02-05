@@ -221,17 +221,27 @@ See [Aureus-Sentinel/docs/implementation_backlog.md](Aureus-Sentinel/docs/implem
 A complete demo environment is available showcasing the integration:
 - **Bridge Service**: Cryptographic signing service with ed25519 signatures ✅ Working
 - **OpenClaw Gateway**: Real WhatsApp/multi-channel AI platform (cloned from GitHub) ✅ Ready
--  **Aureus Agentic OS**: Production TypeScript monorepo with 20+ packages ⚠️ Build requires fixes
+- **Aureus Agentic OS**: Production TypeScript monorepo with 20+ packages ✅ Built & Ready
 - **Documentation**: [DEMO_REAL_SETUP.md](DEMO_REAL_SETUP.md) - Complete setup guide
 
-To run the working demo:
+To run the complete demo:
 ```bash
-# Start Bridge service (working)
+# Build and start all services
+cd Aureus-Sentinel
+docker-compose -f docker-compose-full.yml up --build -d
+
+# Check service status
+docker-compose -f docker-compose-full.yml ps
+
+# View logs
+docker-compose -f docker-compose-full.yml logs -f
+```
+
+Or run Bridge service standalone:
+```bash
+# Start Bridge service only
 cd Aureus-Sentinel/bridge
 node server.js
-
-# Or test dependencies
-node -e "const signer = require('./signer'); console.log('✓ Bridge ready');"
 ```
 
 ## Installation & Deployment
