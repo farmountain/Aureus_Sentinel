@@ -122,6 +122,9 @@ services:
       # Logging
       LOG_LEVEL: ${LOG_LEVEL:-info}
       LOG_FORMAT: json
+      
+      # Event Store
+      EVENT_STORE_PATH: /app/events
     ports:
       - "3000:3000"
     networks:
