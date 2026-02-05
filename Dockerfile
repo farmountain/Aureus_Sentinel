@@ -16,8 +16,8 @@ WORKDIR /app
 COPY --chown=aureus:aureus Aureus-Sentinel/bridge/ ./
 COPY --chown=aureus:aureus contracts/ ./contracts/
 
-# Create directory for keys, logs, and events
-RUN mkdir -p /app/keys /app/logs /app/events /app/data && \
+# Create directory for keys, logs, events, audit, and data
+RUN mkdir -p /app/keys /app/logs /app/events /app/audit /app/data && \
     chown -R aureus:aureus /app
 
 # Switch to non-root user

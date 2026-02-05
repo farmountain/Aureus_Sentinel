@@ -123,8 +123,9 @@ services:
       LOG_LEVEL: ${LOG_LEVEL:-info}
       LOG_FORMAT: json
       
-      # Event Store
+      # Event Store & Audit Log
       EVENT_STORE_PATH: /app/events
+      AUDIT_LOG_PATH: /app/audit
     ports:
       - "3000:3000"
     networks:

@@ -7,7 +7,7 @@ const { getAuditLogger } = require('./audit_logger');
 
 const PORT = process.env.PORT || 3001;
 const eventStore = getEventStore(process.env.EVENT_STORE_PATH || './events');
-const auditLogger = getAuditLogger();
+const auditLogger = getAuditLogger(process.env.AUDIT_LOG_PATH || './audit');
 
 function jsonResponse(res, status, obj){
   const body = JSON.stringify(obj);
