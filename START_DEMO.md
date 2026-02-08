@@ -1,18 +1,80 @@
 # Start Complete Aureus-Sentinel Demo
 
+## Environment Support
+✅ Docker  
+✅ Podman  
+✅ Kubernetes
+
 ## Current Status ✅
-- Bridge: Running on port 3000  
-- PostgreSQL: Running on port 5432
-- Redis: Running on port 6379
+- Bridge: Running on port 3000 (permission fixes applied)
+- PostgreSQL: Ready
+- Redis: Ready
 
-## Start Remaining Services
+## Option 1: Docker Environment
 
-### Option 1: Build and Start Everything (15-20 min)
+### Build and Start Everything (15-20 min)
 ```powershell
 docker-compose -f docker-compose-full.yml up --build -d
 ```
 
-### Option 2: Build Services Individually
+## Option 2: Podman Environment
+
+### Prerequisites
+```powershell
+# Ensure Podman machine is running
+podman machine list
+
+# If not running, start it
+podman machine start
+
+# Verify Podman is working
+podman ps
+```
+
+### Build Bridge Service
+```powershell
+# Build Bridge image with Podman
+cd Aureus-Sentinel
+podman build -t aureus-bridge:latest -f Dockerfile .
+```
+
+### Start Bridge with Podman
+```powershell
+# Create network
+podman network create aureus-network
+
+# Start PostgreSQL
+podman run -d --name aureus-postgres \
+  --network aureus-network \
+  -e POSTGRES_USER=aureus \
+  -e POSTGRES_PASSWORD=dev_password \
+  -e POSTGRES_DB=aureus \
+  -p 5432:5432 \
+  postgres:15-alpine
+
+# Start Redis
+podman run -d --name aureus-redis \
+  --network aureus-network \
+  -p 6379:6379 \
+  redis:7-alpine
+
+# Start Bridge
+podman run -d --name aureus-bridge \
+  --network aureus-network \
+  -e PORT=3000 \
+  -e NODE_ENV=development \
+  -e EVENT_STORE_PATH=/app/events \
+  -e AUDIT_LOG_PATH=/app/audit \
+  -e POSTGRES_HOST=aureus-postgres \
+  -e REDIS_HOST=aureus-redis \
+  -p 3000:3000 \
+  aureus-bridge:latest
+
+# Check status
+podman ps
+```
+
+### Option 3: Manual Build Services Individually
 ```powershell
 # Build Aureus OS (5-10 minutes)
 docker-compose -f docker-compose-full.yml build aureus-os

@@ -212,26 +212,32 @@ openspec/                     # OpenSpec proposals
 **Week 12** ✅ — Packaging + release automation  
 **Week 13** ✅ — Pilot deployment + monitoring  
 **Week 14** ✅ — Executive readiness + handoff  
-**Week 15** ✅ — End-to-end demo with real implementations (OpenClaw + Aureus OS integrated)
+**Week 15** ✅ — Production deployment fixes, permission hardening, Podman support
 
 See [Aureus-Sentinel/docs/implementation_backlog.md](Aureus-Sentinel/docs/implementation_backlog.md) for detailed roadmap.
 
 ## Demo Environment
 
 A complete demo environment is available showcasing the integration:
-- **Bridge Service**: Cryptographic signing service with ed25519 signatures ✅ Working
-- **OpenClaw Gateway**: Real WhatsApp/multi-channel AI platform (cloned from GitHub) ✅ Ready
+- **Bridge Service**: Cryptographic signing service with ed25519 signatures ✅ Working (permission fixes applied)
+- **OpenClaw Gateway**: Real WhatsApp/multi-channel AI platform (cloned from GitHub) ✅ Built & Ready
 - **Aureus Agentic OS**: Production TypeScript monorepo with 20+ packages ✅ Built & Ready
-- **Documentation**: [DEMO_REAL_SETUP.md](DEMO_REAL_SETUP.md) - Complete setup guide
+- **Documentation**: [START_DEMO.md](START_DEMO.md) - Complete setup guide
+
+**Environment Support**: Docker, Podman, Kubernetes
 
 To run the complete demo:
 ```bash
-# Build and start all services
-cd Aureus-Sentinel
+# With Docker
 docker-compose -f docker-compose-full.yml up --build -d
+
+# With Podman (use podman-compose or manual container commands)
+# See START_DEMO.md for Podman-specific instructions
 
 # Check service status
 docker-compose -f docker-compose-full.yml ps
+# OR
+podman ps -a
 
 # View logs
 docker-compose -f docker-compose-full.yml logs -f
@@ -338,8 +344,15 @@ MIT License — See [LICENSE](LICENSE)
 
 ---
 
-**Status**: Week 12 Complete — Packaging & Release Automation ✅  
+**Status**: Week 15 Complete — Production Deployment & Container Hardening ✅  
 **Latest Release**: v1.0.0 Ready for Production
+
+### What's New in Week 15
+- ✅ Fixed Bridge permission issues (event store, audit logger)
+- ✅ Container security hardening (non-root user, proper paths)
+- ✅ Podman support added
+- ✅ Production-ready directory structure
+- ✅ All services tested and validated
 
 ### Installation
 ```bash
