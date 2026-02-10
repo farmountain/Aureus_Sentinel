@@ -220,9 +220,11 @@ See [Aureus-Sentinel/docs/implementation_backlog.md](Aureus-Sentinel/docs/implem
 
 A complete demo environment is available showcasing the integration:
 - **Bridge Service**: Cryptographic signing service with ed25519 signatures ✅ Working (permission fixes applied)
-- **OpenClaw Gateway**: Real WhatsApp/multi-channel AI platform (cloned from GitHub) ✅ Built & Ready
-- **Aureus Agentic OS**: Production TypeScript monorepo with 20+ packages ✅ Built & Ready
+- **OpenClaw Gateway**: Real WhatsApp/multi-channel AI platform ✅ Ready (separate private repository)
+- **Aureus Agentic OS**: Production TypeScript monorepo ✅ Ready (separate private repository)
 - **Documentation**: [START_DEMO.md](START_DEMO.md) - Complete setup guide
+
+**Note**: OpenClaw and Aureus Agentic OS are separate private repositories. They are available locally for testing but are not included in this repository.
 
 **Environment Support**: Docker, Podman, Kubernetes
 
