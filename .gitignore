@@ -11,9 +11,8 @@ knowledgebase/Aureus_Agentic_OS/
 knowledgebase/openclaw/
 knowledgebase/Aureus-Sentinel/
 
-# Root-level external repos (should not be committed)
-# Note: Aureus_Agentic_OS/ now contains demo stub implementation and IS committed
-# Aureus_Agentic_OS/
+# Root-level external repos (private repositories for testing only - not part of this repo)
+Aureus_Agentic_OS/
 openclaw/
 
 # Planning artifacts (not implementation)
@@ -36,6 +35,7 @@ pnpm-lock.yaml
 # Test outputs
 coverage/
 *.log
+test-request.json
 
 # OS files
 .DS_Store
